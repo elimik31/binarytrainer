@@ -46,16 +46,18 @@
              (string-to-number
               (read-string (format "Binary: %s\nDecimal value: " binstring)))
              current-num)
-            (message "Correct")
+            (setq result-string "Correct")
           ;; else
-          (message (format "Wrong, decimal representation of %s is %d."
-                           binstring current-num)))
+          (setq result-string (format "Wrong, decimal representation of %s is %d."
+                                      binstring current-num)))
+        (message (concat result-string "\nPress RETURN to continue, any other key to quit.\n"))
         (setq continue (equal (read-event) 'return))))))
 
 (defun play-hex ()
   "Train decimal to hex conversion"
   (interactive)
   (let ((continue t)
+        (result-string nil)
         (nbits (string-to-number (read-string "Play with number of bits: "))))
     (while continue
       (let* ((current-num (random  (expt 2 nbits)))
@@ -64,10 +66,11 @@
              (string-to-number
               (read-string (format "Hex: %s\nDecimal value: " hexstring)))
              current-num)
-            (message "Correct")
+            (setq result-string "Correct")
           ;; else
-          (message (format "Wrong, decimal representation of %s is %d."
-                           hexstring current-num)))
+          (setq result-string (format "Wrong, decimal representation of %s is %d."
+                                      hexstring current-num)))
+        (message (concat result-string "\nPress RETURN to continue, any other key to quit.\n"))
         (setq continue (equal (read-event) 'return))))))
 
 (provide 'binarytrainer)
